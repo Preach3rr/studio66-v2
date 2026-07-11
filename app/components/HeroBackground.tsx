@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const images = [
@@ -22,6 +21,8 @@ const images = [
 
 export default function HeroBackground() {
   const [current, setCurrent] = useState(0);
+  const [previous, setPrevious] = useState<number | null>(null);
+  const [isFading, setIsFading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -35,35 +36,60 @@ export default function HeroBackground() {
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setCurrent((previous) => (previous + 1) % images.length);
+      setCurrent((prevCurrent) => {
+        const nextIndex = (prevCurrent + 1) % images.length;
+        setPrevious(prevCurrent);
+        setIsFading(true);
+        return nextIndex;
+      });
     }, 6500);
 
     return () => window.clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    if (!isFading) {
+      return;
+    }
+
+    const fadeTimer = window.setTimeout(() => {
+      setPrevious(null);
+      setIsFading(false);
+    }, 900);
+
+    return () => window.clearTimeout(fadeTimer);
+  }, [isFading]);
+
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <AnimatePresence initial={false}>
-        <motion.div
-          key={images[current]}
-          className="hero-bg-slide absolute inset-0"
-          initial={{ opacity: 0, scale: isMobile ? 1 : 1.03, filter: isMobile ? "none" : "blur(3px)" }}
-          animate={{ opacity: 1, scale: isMobile ? 1.03 : 1.1, filter: isMobile ? "none" : "blur(0px)" }}
-          exit={{ opacity: 0, scale: isMobile ? 1.02 : 1.06, filter: isMobile ? "none" : "blur(2px)" }}
-          transition={{ opacity: { duration: 1.1 }, scale: { duration: isMobile ? 5 : 6.5, ease: "linear" }, filter: { duration: 1.2 } }}
-          style={{ pointerEvents: "none" }}
-        >
+      {previous !== null && (
+        <div className="hero-bg-slide hero-bg-slide--previous absolute inset-0" style={{ pointerEvents: "none" }}>
           <Image
-            src={images[current]}
+            src={images[previous]}
             alt=""
             fill
-            priority={current === 0}
+            priority={previous === 0}
             className="object-cover"
             style={{ objectPosition: "center center" }}
             sizes="100vw"
           />
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      )}
+
+      <div
+        className={`hero-bg-slide hero-bg-slide--current absolute inset-0${isFading ? " is-fading" : ""}`}
+        style={{ pointerEvents: "none" }}
+      >
+        <Image
+          src={images[current]}
+          alt=""
+          fill
+          priority={current === 0}
+          className="object-cover"
+          style={{ objectPosition: isMobile ? "center 34%" : "center center" }}
+          sizes="100vw"
+        />
+      </div>
 
       <div className="hero-slider-dots" aria-label="Hero image selector">
         {images.map((image, index) => (

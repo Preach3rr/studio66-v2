@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { showreelClips } from "./showreelData";
@@ -8,45 +8,11 @@ import { showreelClips } from "./showreelData";
 export default function ShowreelGallery() {
   const [selected, setSelected] = useState(showreelClips[0]);
   const [brokenPosters, setBrokenPosters] = useState<Record<string, boolean>>({});
-  const [brokenVideos, setBrokenVideos] = useState<Record<string, boolean>>({});
-  const [videoRetry, setVideoRetry] = useState<Record<string, number>>({});
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const pointerStart = useRef<{ x: number; y: number } | null>(null);
+  const ignoreNextClick = useRef(false);
 
   const handleSelectClip = (clip: (typeof showreelClips)[number]) => {
-    setBrokenVideos((current) => ({
-      ...current,
-      [clip.id]: false,
-    }));
-    setVideoRetry((current) => ({
-      ...current,
-      [clip.id]: 0,
-    }));
     setSelected(clip);
-  };
-
-  const handleVideoError = () => {
-    const retries = videoRetry[selected.id] ?? 0;
-
-    if (retries < 1) {
-      setVideoRetry((current) => ({
-        ...current,
-        [selected.id]: retries + 1,
-      }));
-      return;
-    }
-
-    setBrokenVideos((current) => ({
-      ...current,
-      [selected.id]: true,
-    }));
-  };
-
-  const handleVideoLoaded = () => {
-    setBrokenVideos((current) => ({
-      ...current,
-      [selected.id]: false,
-    }));
   };
 
   const handlePointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
@@ -69,20 +35,13 @@ export default function ShowreelGallery() {
 
     // Ignore drag gestures so scroll remains smooth on touch screens.
     if (dx < 10 && dy < 10) {
+      ignoreNextClick.current = true;
       handleSelectClip(clip);
+      window.setTimeout(() => {
+        ignoreNextClick.current = false;
+      }, 0);
     }
   };
-
-  useEffect(() => {
-    if (!videoRef.current || brokenVideos[selected.id]) {
-      return;
-    }
-
-    videoRef.current.load();
-    videoRef.current.play().catch(() => {
-      // Some browsers block autoplay even after interaction.
-    });
-  }, [selected, brokenVideos]);
 
   // Ensure clip 0 is shown first on mobile: move selected to first if not already
   // (keeps desktop behavior unchanged but reinforces mobile initial state)
@@ -96,34 +55,20 @@ export default function ShowreelGallery() {
 
       <div className="showreel-gallery__layout">
         <div className="showreel-gallery__player">
-          {brokenVideos[selected.id] ? (
-            <div className="showreel-gallery__video showreel-gallery__video-unavailable">
-              <p>This clip is not available online yet.</p>
-              <p>Upload optimized videos or replace sources with hosted URLs.</p>
-            </div>
-          ) : (
-            <video
-              key={`${selected.id}-${videoRetry[selected.id] ?? 0}`}
-              ref={videoRef}
-              controls
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster={selected.poster}
-              src={selected.src}
-              className="showreel-gallery__video"
-              onLoadedData={handleVideoLoaded}
-              onError={handleVideoError}
-            >
-              <source
-                src={selected.src}
-                type={selected.src.toLowerCase().endsWith(".mov") ? "video/quicktime" : "video/mp4"}
-              />
-              Your browser does not support the video tag.
-            </video>
-          )}
+          <video
+            key={selected.src}
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={selected.poster}
+            src={selected.src}
+            className="showreel-gallery__video"
+          >
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <div className="showreel-gallery__sidebar">
@@ -133,7 +78,12 @@ export default function ShowreelGallery() {
                 key={clip.id}
                 type="button"
                 aria-pressed={selected.id === clip.id}
-                onClick={() => handleSelectClip(clip)}
+                onClick={() => {
+                  if (ignoreNextClick.current) {
+                    return;
+                  }
+                  handleSelectClip(clip);
+                }}
                 onPointerDown={handlePointerDown}
                 onPointerUp={(event) => handlePointerUp(event, clip)}
                 whileHover={{ y: -3 }}
