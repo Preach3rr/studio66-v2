@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { showreelClips } from "./showreelData";
@@ -9,9 +9,47 @@ export default function ShowreelGallery() {
   const [selected, setSelected] = useState(showreelClips[0]);
   const [brokenPosters, setBrokenPosters] = useState<Record<string, boolean>>({});
   const [brokenVideos, setBrokenVideos] = useState<Record<string, boolean>>({});
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const pointerStart = useRef<{ x: number; y: number } | null>(null);
+
   const handleSelectClip = (clip: (typeof showreelClips)[number]) => {
     setSelected(clip);
   };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
+    pointerStart.current = { x: event.clientX, y: event.clientY };
+  };
+
+  const handlePointerUp = (
+    event: React.PointerEvent<HTMLButtonElement>,
+    clip: (typeof showreelClips)[number],
+  ) => {
+    if (!pointerStart.current) {
+      handleSelectClip(clip);
+      return;
+    }
+
+    const dx = Math.abs(event.clientX - pointerStart.current.x);
+    const dy = Math.abs(event.clientY - pointerStart.current.y);
+
+    pointerStart.current = null;
+
+    // Ignore drag gestures so scroll remains smooth on touch screens.
+    if (dx < 10 && dy < 10) {
+      handleSelectClip(clip);
+    }
+  };
+
+  useEffect(() => {
+    if (!videoRef.current || brokenVideos[selected.id]) {
+      return;
+    }
+
+    videoRef.current.load();
+    videoRef.current.play().catch(() => {
+      // Some browsers block autoplay even after interaction.
+    });
+  }, [selected, brokenVideos]);
 
   // Ensure clip 0 is shown first on mobile: move selected to first if not already
   // (keeps desktop behavior unchanged but reinforces mobile initial state)
@@ -32,7 +70,7 @@ export default function ShowreelGallery() {
             </div>
           ) : (
             <video
-              key={selected.src}
+              ref={videoRef}
               controls
               autoPlay
               muted
@@ -66,6 +104,8 @@ export default function ShowreelGallery() {
                 type="button"
                 aria-pressed={selected.id === clip.id}
                 onClick={() => handleSelectClip(clip)}
+                onPointerDown={handlePointerDown}
+                onPointerUp={(event) => handlePointerUp(event, clip)}
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
