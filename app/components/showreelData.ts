@@ -13,7 +13,7 @@ export const showreelClips: ShowreelClip[] = [
     title: "0",
     subtitle: "",
     description: "",
-    src: "/videos/0.mp4",
+    src: "/videos-web/0.mp4",
     poster: "/thumbnails/0.jpg",
   },
   {
@@ -21,7 +21,7 @@ export const showreelClips: ShowreelClip[] = [
     title: "1",
     subtitle: "",
     description: "",
-    src: "/videos/1.mp4",
+    src: "/videos-web/1.mp4",
     poster: "/thumbnails/2.jpg",
   },
   {
@@ -29,7 +29,7 @@ export const showreelClips: ShowreelClip[] = [
     title: "2",
     subtitle: "",
     description: "",
-    src: "/videos/2.mp4",
+    src: "/videos-web/2.mp4",
     poster: "/thumbnails/1.jpg",
   },
   {
@@ -37,7 +37,7 @@ export const showreelClips: ShowreelClip[] = [
     title: "3",
     subtitle: "",
     description: "",
-    src: "/videos/3.mov",
+    src: "/videos-web/3.mp4",
     poster: "/thumbnails/3.jpg",
   },
   {
@@ -45,7 +45,7 @@ export const showreelClips: ShowreelClip[] = [
     title: "4",
     subtitle: "",
     description: "",
-    src: "/videos/4.mp4",
+    src: "/videos-web/4.mp4",
     poster: "/thumbnails/4.jpg",
   },
   {
@@ -53,7 +53,7 @@ export const showreelClips: ShowreelClip[] = [
     title: "5",
     subtitle: "",
     description: "",
-    src: "/videos/5.mp4",
+    src: "/videos-web/5.mp4",
     poster: "/thumbnails/5.jpg",
   },
 ];
