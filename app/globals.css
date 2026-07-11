@@ -1205,3 +1205,111 @@ animation:pulseGlow 4s ease-in-out infinite;
     margin-top:32px !important;
   }
 }
+
+/* Requested phone layout: wider visual rhythm and denser rows */
+@media (max-width: 767px){
+  .site-section,
+  .portfolio-section,
+  .showreel-gallery,
+  .footer-section{
+    padding-inline:10px !important;
+  }
+
+  .hero-section > .relative{
+    padding-inline:10px !important;
+  }
+
+  .hero-slider-dots{
+    gap:14px !important;
+    bottom:16px !important;
+  }
+
+  .hero-slider-dots button{
+    width:9px !important;
+    height:9px !important;
+  }
+
+  .hero-slider-dots button.is-active{
+    width:30px !important;
+  }
+
+  .services-grid{
+    grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
+    gap:10px !important;
+  }
+
+  .service-card{
+    padding:12px !important;
+    border-radius:12px !important;
+  }
+
+  .service-card h3{
+    font-size:14px !important;
+    margin-bottom:7px !important;
+  }
+
+  .service-card p{
+    font-size:11px !important;
+    line-height:1.35 !important;
+  }
+
+  .service-card svg{
+    width:22px !important;
+    height:22px !important;
+    margin-bottom:10px !important;
+  }
+
+  .testimonials-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+    gap:10px !important;
+  }
+
+  .testimonial-card{
+    padding:14px !important;
+    border-radius:12px !important;
+  }
+
+  .testimonial-card p{
+    font-size:12px !important;
+    line-height:1.45 !important;
+    margin-bottom:12px !important;
+  }
+
+  .testimonial-card h3{
+    font-size:14px !important;
+  }
+
+  .portfolio-filters{
+    flex-wrap:nowrap !important;
+    justify-content:flex-start !important;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    gap:10px !important;
+    margin-inline:-2px;
+    padding-inline:2px;
+    scrollbar-width:none;
+  }
+
+  .portfolio-filters::-webkit-scrollbar{
+    display:none;
+  }
+
+  .portfolio-filters button{
+    flex:0 0 auto;
+    border:1px solid rgba(201,165,90,.34) !important;
+    border-radius:999px;
+    padding:8px 12px !important;
+    font-size:10px !important;
+  }
+}
+
+@media (max-width: 430px){
+  .services-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .testimonials-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  }
+}

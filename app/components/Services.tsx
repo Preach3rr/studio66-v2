@@ -71,7 +71,7 @@ export default function Services() {
         Premium photography and cinematic videography tailored to every client.
       </p>
 
-      <div className="mobile-stack-grid"
+      <div className="mobile-stack-grid services-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))",
@@ -92,7 +92,7 @@ export default function Services() {
                 y: -10,
                 scale: 1.02,
               }}
-              className="mobile-card"
+              className="mobile-card service-card"
               style={{
                 background: "#111",
                 border: "1px solid rgba(201,165,90,.18)",

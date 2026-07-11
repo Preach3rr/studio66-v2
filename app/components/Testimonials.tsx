@@ -48,7 +48,7 @@ export default function Testimonials() {
         Every project tells a different story.
       </p>
 
-      <div className="mobile-stack-grid"
+      <div className="mobile-stack-grid testimonials-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit,minmax(340px,1fr))",
@@ -65,7 +65,7 @@ export default function Testimonials() {
             whileHover={{
               y: -10,
             }}
-            className="mobile-card"
+            className="mobile-card testimonial-card"
             style={{
               background: "#111",
               border: "1px solid rgba(201,165,90,.18)",
