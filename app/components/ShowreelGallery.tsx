@@ -9,11 +9,44 @@ export default function ShowreelGallery() {
   const [selected, setSelected] = useState(showreelClips[0]);
   const [brokenPosters, setBrokenPosters] = useState<Record<string, boolean>>({});
   const [brokenVideos, setBrokenVideos] = useState<Record<string, boolean>>({});
+  const [videoRetry, setVideoRetry] = useState<Record<string, number>>({});
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const pointerStart = useRef<{ x: number; y: number } | null>(null);
 
   const handleSelectClip = (clip: (typeof showreelClips)[number]) => {
+    setBrokenVideos((current) => ({
+      ...current,
+      [clip.id]: false,
+    }));
+    setVideoRetry((current) => ({
+      ...current,
+      [clip.id]: 0,
+    }));
     setSelected(clip);
+  };
+
+  const handleVideoError = () => {
+    const retries = videoRetry[selected.id] ?? 0;
+
+    if (retries < 1) {
+      setVideoRetry((current) => ({
+        ...current,
+        [selected.id]: retries + 1,
+      }));
+      return;
+    }
+
+    setBrokenVideos((current) => ({
+      ...current,
+      [selected.id]: true,
+    }));
+  };
+
+  const handleVideoLoaded = () => {
+    setBrokenVideos((current) => ({
+      ...current,
+      [selected.id]: false,
+    }));
   };
 
   const handlePointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
@@ -70,6 +103,7 @@ export default function ShowreelGallery() {
             </div>
           ) : (
             <video
+              key={`${selected.id}-${videoRetry[selected.id] ?? 0}`}
               ref={videoRef}
               controls
               autoPlay
@@ -80,12 +114,8 @@ export default function ShowreelGallery() {
               poster={selected.poster}
               src={selected.src}
               className="showreel-gallery__video"
-              onError={() =>
-                setBrokenVideos((current) => ({
-                  ...current,
-                  [selected.id]: true,
-                }))
-              }
+              onLoadedData={handleVideoLoaded}
+              onError={handleVideoError}
             >
               <source
                 src={selected.src}
