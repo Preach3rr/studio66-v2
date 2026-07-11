@@ -8,6 +8,7 @@ import { showreelClips } from "./showreelData";
 export default function ShowreelGallery() {
   const [selected, setSelected] = useState(showreelClips[0]);
   const [brokenPosters, setBrokenPosters] = useState<Record<string, boolean>>({});
+  const [brokenVideos, setBrokenVideos] = useState<Record<string, boolean>>({});
   const handleSelectClip = (clip: (typeof showreelClips)[number]) => {
     setSelected(clip);
   };
@@ -24,24 +25,37 @@ export default function ShowreelGallery() {
 
       <div className="showreel-gallery__layout">
         <div className="showreel-gallery__player">
-          <video
-            key={selected.src}
-            controls
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={selected.poster}
-            src={selected.src}
-            className="showreel-gallery__video"
-          >
-            <source
+          {brokenVideos[selected.id] ? (
+            <div className="showreel-gallery__video showreel-gallery__video-unavailable">
+              <p>This clip is not available online yet.</p>
+              <p>Upload optimized videos or replace sources with hosted URLs.</p>
+            </div>
+          ) : (
+            <video
+              key={selected.src}
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={selected.poster}
               src={selected.src}
-              type={selected.src.toLowerCase().endsWith(".mov") ? "video/quicktime" : "video/mp4"}
-            />
-            Your browser does not support the video tag.
-          </video>
+              className="showreel-gallery__video"
+              onError={() =>
+                setBrokenVideos((current) => ({
+                  ...current,
+                  [selected.id]: true,
+                }))
+              }
+            >
+              <source
+                src={selected.src}
+                type={selected.src.toLowerCase().endsWith(".mov") ? "video/quicktime" : "video/mp4"}
+              />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
 
         <div className="showreel-gallery__sidebar">
@@ -52,8 +66,6 @@ export default function ShowreelGallery() {
                 type="button"
                 aria-pressed={selected.id === clip.id}
                 onClick={() => handleSelectClip(clip)}
-                onPointerUp={() => handleSelectClip(clip)}
-                onTouchEnd={() => handleSelectClip(clip)}
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}

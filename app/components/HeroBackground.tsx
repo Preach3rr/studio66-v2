@@ -22,6 +22,16 @@ const images = [
 
 export default function HeroBackground() {
   const [current, setCurrent] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateViewport = () => setIsMobile(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -37,10 +47,10 @@ export default function HeroBackground() {
         <motion.div
           key={images[current]}
           className="hero-bg-slide absolute inset-0"
-          initial={{ opacity: 0, scale: 1.03, filter: "blur(3px)" }}
-          animate={{ opacity: 1, scale: 1.1, filter: "blur(0px)" }}
-          exit={{ opacity: 0, scale: 1.06, filter: "blur(2px)" }}
-          transition={{ opacity: { duration: 1.5 }, scale: { duration: 6.5, ease: "linear" }, filter: { duration: 1.2 } }}
+          initial={{ opacity: 0, scale: isMobile ? 1 : 1.03, filter: isMobile ? "none" : "blur(3px)" }}
+          animate={{ opacity: 1, scale: isMobile ? 1.03 : 1.1, filter: isMobile ? "none" : "blur(0px)" }}
+          exit={{ opacity: 0, scale: isMobile ? 1.02 : 1.06, filter: isMobile ? "none" : "blur(2px)" }}
+          transition={{ opacity: { duration: 1.1 }, scale: { duration: isMobile ? 5 : 6.5, ease: "linear" }, filter: { duration: 1.2 } }}
           style={{ pointerEvents: "none" }}
         >
           <Image
