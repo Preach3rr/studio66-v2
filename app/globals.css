@@ -1032,6 +1032,69 @@ animation:pulseGlow 4s ease-in-out infinite;
   contain-intrinsic-size:1px 900px;
 }
 
+/* Compact mobile layout: less vertical stacking, wider composition */
+@media (max-width: 767px){
+  .site-section,
+  .portfolio-section,
+  .showreel-gallery,
+  .footer-section{
+    padding-top:64px !important;
+    padding-bottom:64px !important;
+    padding-inline:14px !important;
+  }
+
+  .site-section h2,
+  .portfolio-heading h2,
+  .showreel-gallery__player-meta h2{
+    font-size:clamp(28px, 7.2vw, 40px) !important;
+    line-height:1.05 !important;
+  }
+
+  .mobile-stack-grid,
+  .stats-grid,
+  .contact-grid,
+  .footer-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:14px !important;
+  }
+
+  .about-grid{
+    grid-template-columns:minmax(0, 1fr) !important;
+    gap:20px !important;
+  }
+
+  .mobile-card{
+    padding:18px !important;
+    border-radius:14px !important;
+  }
+
+  .mobile-card h3{
+    font-size:20px !important;
+    margin-bottom:10px !important;
+  }
+
+  .mobile-card p{
+    font-size:14px !important;
+    line-height:1.55 !important;
+  }
+
+  .portfolio-grid{
+    gap:8px !important;
+  }
+
+  .about-image{
+    height:360px !important;
+  }
+}
+
+@media (max-width: 440px){
+  .mobile-stack-grid,
+  .contact-grid,
+  .footer-grid{
+    grid-template-columns:minmax(0, 1fr) !important;
+  }
+}
+
 @media (max-width: 380px){
   .hero-section > .relative{ padding-inline:16px !important; }
   .hero-title{ font-size:44px !important; }
