@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       "Premium photography and cinematic videography for weddings, baptisms, events, portraits, real estate and commercial projects.",
     images: [
       {
-        url: "/logo/studio66.png",
+        url: "/logo/studio66-social.png",
         width: 1200,
         height: 630,
         alt: "Studio66 Photography",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: "Studio66 Photography",
     description:
       "Premium photography and cinematic videography for weddings, baptisms, events, portraits, real estate and commercial projects.",
-    images: ["/logo/studio66.png"],
+    images: ["/logo/studio66-social.png"],
   },
   robots: {
     index: true,
@@ -74,7 +74,7 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Studio66 Photography",
-  image: "https://studio66photography.ro/logo/studio66.png",
+  image: "https://studio66photography.ro/logo/studio66-social.png",
   url: "https://studio66photography.ro",
   telephone: "+4550172284",
   email: "studio66.photographer@gmail.com",
