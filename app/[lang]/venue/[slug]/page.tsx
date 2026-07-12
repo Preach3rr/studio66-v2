@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import SeoServicePage from "../../components/SeoServicePage";
+import SeoServicePage from "../../../components/SeoServicePage";
 import {
-  getRelatedSeoLinks,
-  getLanguageAlternates,
-  getSeoLandingPage,
-  seoLandingPages,
-} from "../../components/seoLandingData";
+  getRelatedVenueLinks,
+  getSeoVenuePage,
+  getVenueLanguageAlternates,
+  seoVenuePages,
+} from "../../../components/seoVenueData";
 
 type Params = {
   lang: string;
@@ -14,7 +14,7 @@ type Params = {
 };
 
 export function generateStaticParams() {
-  return seoLandingPages.map((page) => ({
+  return seoVenuePages.map((page) => ({
     lang: page.lang,
     slug: page.slug,
   }));
@@ -26,13 +26,13 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { lang, slug } = await params;
-  const page = getSeoLandingPage(lang, slug);
+  const page = getSeoVenuePage(lang, slug);
 
   if (!page) {
     return {};
   }
 
-  const languageAlternates = getLanguageAlternates(page.id);
+  const languageAlternates = getVenueLanguageAlternates(page.id);
 
   return {
     title: page.title,
@@ -71,7 +71,7 @@ export default async function Page({
   params: Promise<Params>;
 }) {
   const { lang, slug } = await params;
-  const page = getSeoLandingPage(lang, slug);
+  const page = getSeoVenuePage(lang, slug);
 
   if (!page) {
     notFound();
@@ -89,8 +89,8 @@ export default async function Page({
       ctaHref={page.ctaHref}
       faqs={page.faqs}
       faqTitle={page.faqTitle}
-      relatedLinks={getRelatedSeoLinks(page)}
-      relatedTitle={lang === "ro" ? "Cautari similare" : lang === "da" ? "Lignende soegninger" : "Related searches"}
+      relatedLinks={getRelatedVenueLinks(page)}
+      relatedTitle={lang === "ro" ? "Locatii recomandate" : lang === "da" ? "Anbefalede lokationer" : "Recommended venues"}
       breadcrumbs={[
         { name: "Home", item: "/" },
         { name: page.title, item: page.canonicalPath },

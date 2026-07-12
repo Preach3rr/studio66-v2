@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { seoLandingPages } from "./components/seoLandingData";
+import { seoVenuePages } from "./components/seoVenueData";
 
 const baseUrl = "https://studio66photography.ro";
 
@@ -52,5 +53,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  return [...corePages, ...localizedPages];
+  const venuePages: MetadataRoute.Sitemap = seoVenuePages.map((page) => ({
+    url: `${baseUrl}${page.path}`,
+    changeFrequency: "weekly",
+    priority: 0.75,
+    lastModified: new Date(),
+  }));
+
+  return [...corePages, ...localizedPages, ...venuePages];
 }

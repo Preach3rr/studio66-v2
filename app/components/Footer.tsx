@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { featuredSeoLinks } from "./seoLandingData";
+import { featuredVenueLinks } from "./seoVenueData";
 
 const navigation = [
   ["Home", "#top"], ["Services", "#services"], ["Portfolio", "#portfolio"], ["Pricing", "#pricing"], ["Contact", "#contact"],
@@ -35,6 +36,17 @@ export default function Footer() {
         <p style={{ color: "#C9A55A", letterSpacing: ".22em", marginBottom: "14px", fontWeight: 600 }}>POPULAR SEARCHES</p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
           {featuredSeoLinks.map((item) => (
+            <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ marginBottom: "30px" }}>
+        <p style={{ color: "#C9A55A", letterSpacing: ".22em", marginBottom: "14px", fontWeight: 600 }}>VENUE SEARCHES</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
+          {featuredVenueLinks.map((item) => (
             <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
               {item.label}
             </a>

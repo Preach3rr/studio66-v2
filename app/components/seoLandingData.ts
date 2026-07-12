@@ -27,6 +27,8 @@ type ServiceSeed = {
 export type SeoLandingPage = {
   id: string;
   lang: Locale;
+  serviceKey: ServiceKey;
+  locationKey: string;
   slug: string;
   path: string;
   canonicalPath: string;
@@ -570,6 +572,8 @@ const allPages: SeoLandingPage[] = locales.flatMap((lang) =>
       return {
         id,
         lang,
+        serviceKey: service.key,
+        locationKey: location.key,
         slug,
         path: `/${lang}/${slug}/`,
         canonicalPath: `/${lang}/${slug}/`,
@@ -613,6 +617,28 @@ export function getLanguageAlternates(pageId: string): Partial<Record<Locale, st
 }
 
 export const seoLandingPages = allPages;
+
+export function getRelatedSeoLinks(page: SeoLandingPage, limit = 8): Array<{ label: string; href: string }> {
+  const sameLanguagePages = seoLandingPages.filter((item) => item.lang === page.lang && item.slug !== page.slug);
+
+  const sameService = sameLanguagePages.filter((item) => item.serviceKey === page.serviceKey);
+  const sameLocation = sameLanguagePages.filter((item) => item.locationKey === page.locationKey);
+
+  const candidates = [...sameService, ...sameLocation];
+  const deduped = new Map<string, { label: string; href: string }>();
+
+  for (const item of candidates) {
+    if (!deduped.has(item.path)) {
+      deduped.set(item.path, { label: item.title, href: item.path });
+    }
+
+    if (deduped.size >= limit) {
+      break;
+    }
+  }
+
+  return Array.from(deduped.values());
+}
 
 export const featuredSeoLinks: Array<{ label: string; href: string }> = [
   { label: "RO: Fotograf Nunta Bucuresti", href: "/ro/fotograf-nunta-bucuresti/" },

@@ -5,16 +5,30 @@ type FaqItem = {
   answer: string;
 };
 
+type RelatedLink = {
+  label: string;
+  href: string;
+};
+
+type BreadcrumbItem = {
+  name: string;
+  item: string;
+};
+
 type Props = {
   eyebrow: string;
   title: string;
   intro: string;
+  description?: string;
   highlights: string[];
   locationLine: string;
   ctaText: string;
   ctaHref: string;
   faqs: FaqItem[];
   faqTitle?: string;
+  relatedTitle?: string;
+  relatedLinks?: RelatedLink[];
+  breadcrumbs?: BreadcrumbItem[];
   children?: ReactNode;
 };
 
@@ -22,12 +36,16 @@ export default function SeoServicePage({
   eyebrow,
   title,
   intro,
+  description = "",
   highlights,
   locationLine,
   ctaText,
   ctaHref,
   faqs,
   faqTitle = "Intrebari frecvente",
+  relatedTitle,
+  relatedLinks,
+  breadcrumbs,
   children,
 }: Props) {
   const faqSchema = {
@@ -42,6 +60,32 @@ export default function SeoServicePage({
       },
     })),
   };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    description,
+    areaServed: locationLine,
+    provider: {
+      "@type": "ProfessionalService",
+      name: "Studio66 Photography",
+      url: "https://studio66photography.ro",
+    },
+  };
+
+  const breadcrumbSchema = breadcrumbs
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbs.map((crumb, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: crumb.name,
+          item: `https://studio66photography.ro${crumb.item}`,
+        })),
+      }
+    : null;
 
   return (
     <main style={{ background: "#070707", color: "#fff", minHeight: "100vh", padding: "120px 7%" }}>
@@ -78,7 +122,24 @@ export default function SeoServicePage({
         </div>
       </section>
 
+      {relatedLinks && relatedLinks.length > 0 && (
+        <section style={{ maxWidth: "980px", margin: "64px auto 0" }}>
+          <h2 style={{ fontSize: "clamp(28px, 3.8vw, 40px)", marginBottom: "18px" }}>
+            {relatedTitle ?? "Related searches"}
+          </h2>
+          <div style={{ display: "grid", gap: "10px" }}>
+            {relatedLinks.map((link) => (
+              <a key={link.href} href={link.href} style={{ color: "#d8d8d8", textDecoration: "none", border: "1px solid rgba(201,165,90,.2)", borderRadius: "10px", padding: "12px 14px", background: "rgba(255,255,255,.015)" }}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      {breadcrumbSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />}
     </main>
   );
 }
