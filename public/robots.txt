@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: https://studio66photography.ro
 Sitemap: https://studio66photography.ro/sitemap.xml

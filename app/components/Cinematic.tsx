@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { studio66BlurDataURL } from "./imagePlaceholders";
 
 export default function Cinematic() {
   return (
@@ -16,6 +17,11 @@ export default function Cinematic() {
         src="/images/hero.jpg"
         alt="Studio66"
         fill
+        sizes="100vw"
+        loading="lazy"
+        decoding="async"
+        placeholder="blur"
+        blurDataURL={studio66BlurDataURL}
         className="object-cover"
       />
 

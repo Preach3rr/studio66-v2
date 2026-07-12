@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { studio66BlurDataURL } from "./imagePlaceholders";
 
 const photos = [
   {
@@ -10,7 +11,7 @@ const photos = [
     subtitle: "Luxury Wedding Photography",
   },
   {
-    image: "/portfolio/Portraits/1.JPG",
+    image: "/portfolio/Portraits/1.jpg",
     title: "Portrait Sessions",
     subtitle: "Natural & Editorial Portraits",
   },
@@ -88,6 +89,11 @@ export default function FeaturedGallery() {
               src={photo.image}
               alt={photo.title}
               fill
+              sizes="100vw"
+              loading="lazy"
+              decoding="async"
+              placeholder="blur"
+              blurDataURL={studio66BlurDataURL}
               className="object-cover transition duration-700 hover:scale-110"
             />
 

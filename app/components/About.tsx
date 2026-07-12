@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Camera, Heart, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { studio66BlurDataURL } from "./imagePlaceholders";
 
 const values = [
   { icon: Heart, title: "Real moments", text: "We look for the glances, laughter and quiet details that make every celebration feel unmistakably yours." },
@@ -97,6 +98,11 @@ export default function About() {
             src="/images/about-studio66-couple.png"
             alt="Newly married couple walking together at golden hour"
             fill
+            sizes="(max-width: 767px) 100vw, 50vw"
+            loading="lazy"
+            decoding="async"
+            placeholder="blur"
+            blurDataURL={studio66BlurDataURL}
             className="object-cover"
           />
         </motion.div>

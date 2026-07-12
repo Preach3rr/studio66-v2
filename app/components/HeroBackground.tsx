@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { studio66BlurDataURL } from "./imagePlaceholders";
 
 const images = [
   "/images/hero/hero1.jpg",
@@ -153,6 +154,9 @@ export default function HeroBackground() {
               alt=""
               fill
               priority={previous === 0}
+              placeholder="blur"
+              blurDataURL={studio66BlurDataURL}
+              decoding="async"
               className="object-cover"
               style={{ objectPosition: "center center" }}
               sizes="100vw"
@@ -170,6 +174,9 @@ export default function HeroBackground() {
             alt=""
             fill
             priority={current === 0}
+            placeholder="blur"
+            blurDataURL={studio66BlurDataURL}
+            decoding="async"
             className="object-cover"
             style={{ objectPosition: isMobile ? "center 34%" : "center center" }}
             sizes="100vw"

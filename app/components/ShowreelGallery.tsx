@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { showreelClips } from "./showreelData";
+import { studio66BlurDataURL } from "./imagePlaceholders";
 
 export default function ShowreelGallery() {
   const [selected, setSelected] = useState(showreelClips[0]);
@@ -100,6 +101,11 @@ export default function ShowreelGallery() {
                       src={clip.poster}
                       alt={clip.title}
                       fill
+                      sizes="(max-width: 767px) 50vw, 20vw"
+                      loading="lazy"
+                      decoding="async"
+                      placeholder="blur"
+                      blurDataURL={studio66BlurDataURL}
                       className="object-cover"
                       onError={() =>
                         setBrokenPosters((current) => ({

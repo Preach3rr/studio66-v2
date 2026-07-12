@@ -3,6 +3,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://studio66photography.ro"),
+  applicationName: "Studio66 Photography",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   title: {
     default: "Studio66 Photography | Weddings, Events, Portraits, Real Estate",
     template: "%s | Studio66 Photography",
@@ -49,6 +56,7 @@ export const metadata: Metadata = {
       },
     ],
     locale: "en_US",
+    alternateLocale: ["ro_RO", "da_DK"],
   },
   twitter: {
     card: "summary_large_image",
@@ -90,6 +98,14 @@ const localBusinessSchema = {
   ],
 };
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Studio66 Photography",
+  url: "https://studio66photography.ro",
+  inLanguage: ["en", "ro", "da"],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -108,6 +124,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
           }}
         />
         {children}

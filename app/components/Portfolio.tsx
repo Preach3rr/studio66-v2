@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Lightbox from "./Lightbox";
+import { studio66BlurDataURL } from "./imagePlaceholders";
 import {
   portfolioImages,
   type PortfolioCategory,
@@ -211,9 +212,13 @@ export default function Portfolio() {
               >
                 <Image
                   src={image.src}
-                  alt=""
+                  alt={`Studio66 ${image.category.replace("-", " ")} portfolio photo ${index + 1}`}
                   fill
                   sizes="(max-width: 767px) 31vw, (max-width: 1200px) 43vw, 29vw"
+                  loading="lazy"
+                  decoding="async"
+                  placeholder="blur"
+                  blurDataURL={studio66BlurDataURL}
                   className="object-cover transition duration-700 hover:scale-105"
                 />
 
