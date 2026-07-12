@@ -25,6 +25,48 @@ export default function HeroBackground() {
   const [isFading, setIsFading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [parallaxY, setParallaxY] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+
+  const markLoaded = (src: string) => {
+    setLoadedImages((currentLoaded) => {
+      if (currentLoaded[src]) {
+        return currentLoaded;
+      }
+
+      return {
+        ...currentLoaded,
+        [src]: true,
+      };
+    });
+  };
+
+  const preloadImage = (src: string) =>
+    new Promise<void>((resolve) => {
+      if (loadedImages[src]) {
+        resolve();
+        return;
+      }
+
+      const image = new window.Image();
+      image.onload = () => {
+        markLoaded(src);
+        resolve();
+      };
+      image.onerror = () => resolve();
+      image.src = src;
+    });
+
+  const switchToSlide = async (nextIndex: number) => {
+    if (nextIndex === current) {
+      return;
+    }
+
+    await preloadImage(images[nextIndex]);
+
+    setPrevious(current);
+    setCurrent(nextIndex);
+    setIsFading(true);
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
@@ -36,17 +78,22 @@ export default function HeroBackground() {
   }, []);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setCurrent((prevCurrent) => {
-        const nextIndex = (prevCurrent + 1) % images.length;
-        setPrevious(prevCurrent);
-        setIsFading(true);
-        return nextIndex;
-      });
+    let disposed = false;
+
+    const timeout = window.setTimeout(async () => {
+      if (disposed) {
+        return;
+      }
+
+      const nextIndex = (current + 1) % images.length;
+      await switchToSlide(nextIndex);
     }, 6500);
 
-    return () => window.clearInterval(timer);
-  }, []);
+    return () => {
+      disposed = true;
+      window.clearTimeout(timeout);
+    };
+  }, [current]);
 
   useEffect(() => {
     let ticking = false;
@@ -86,6 +133,13 @@ export default function HeroBackground() {
     return () => window.clearTimeout(fadeTimer);
   }, [isFading]);
 
+  useEffect(() => {
+    // Preload the first few slides so initial transitions stay smooth.
+    images.slice(0, 4).forEach((src) => {
+      void preloadImage(src);
+    });
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div
@@ -102,6 +156,7 @@ export default function HeroBackground() {
               className="object-cover"
               style={{ objectPosition: "center center" }}
               sizes="100vw"
+              onLoad={() => markLoaded(images[previous])}
             />
           </div>
         )}
@@ -118,6 +173,7 @@ export default function HeroBackground() {
             className="object-cover"
             style={{ objectPosition: isMobile ? "center 34%" : "center center" }}
             sizes="100vw"
+            onLoad={() => markLoaded(images[current])}
           />
         </div>
       </div>
@@ -131,12 +187,7 @@ export default function HeroBackground() {
             aria-current={index === current}
             className={index === current ? "is-active" : ""}
             onClick={() => {
-              if (index === current) {
-                return;
-              }
-              setPrevious(current);
-              setCurrent(index);
-              setIsFading(true);
+              void switchToSlide(index);
             }}
           />
         ))}
