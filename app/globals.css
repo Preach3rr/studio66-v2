@@ -1477,3 +1477,54 @@ animation:pulseGlow 4s ease-in-out infinite;
     height:400px !important;
   }
 }
+
+/* Final mobile fixes requested */
+@media (max-width: 767px){
+  .hero-slider-dots{
+    bottom:6px !important;
+    z-index:8 !important;
+  }
+
+  .hero-actions{
+    position:relative;
+    z-index:20;
+  }
+
+  .services-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+    gap:10px !important;
+  }
+
+  .service-card{
+    padding:14px !important;
+    min-height:170px;
+  }
+
+  .service-card h3{
+    font-size:18px !important;
+  }
+
+  .service-card p{
+    font-size:12px !important;
+    line-height:1.45 !important;
+  }
+
+  .testimonials-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:12px !important;
+  }
+
+  .testimonial-card{
+    min-height:230px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+  }
+
+  .testimonial-stars{
+    font-size:30px !important;
+    line-height:1;
+    margin-bottom:14px !important;
+    display:block;
+  }
+}

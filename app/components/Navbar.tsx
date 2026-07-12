@@ -138,23 +138,32 @@ export default function Navbar() {
       </motion.div>
 
       {menuOpen && (
-        <nav
-          id="mobile-navigation"
-          className="relative border-t border-[#C9A55A]/20 bg-[#090909]/95 px-5 py-5 backdrop-blur-xl lg:hidden"
-        >
-          <div className="mx-auto flex max-w-[1850px] flex-col gap-1">
-            {links.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-sm font-medium tracking-wide text-white hover:bg-white/5 hover:text-[#E8CB8B]"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-        </nav>
+        <>
+          <button
+            type="button"
+            aria-label="Close menu overlay"
+            onClick={() => setMenuOpen(false)}
+            className="fixed inset-x-0 bottom-0 top-[94px] bg-[#050505]/86 backdrop-blur-sm lg:hidden"
+          />
+
+          <nav
+            id="mobile-navigation"
+            className="fixed inset-x-0 bottom-0 top-[94px] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl lg:hidden"
+          >
+            <div className="mx-auto flex max-w-[1850px] flex-col gap-2">
+              {links.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-lg border border-transparent bg-white/[0.03] px-4 py-3 text-sm font-medium tracking-wide text-white hover:border-[#C9A55A]/30 hover:bg-white/5 hover:text-[#E8CB8B]"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        </>
       )}
     </motion.header>
   );

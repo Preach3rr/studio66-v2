@@ -15,6 +15,14 @@ const reviews = [
     name: "Sophia Larsen",
     text: "Amazing communication, beautiful colors and fantastic attention to detail.",
   },
+  {
+    name: "Andreea Popescu",
+    text: "Echipa a fost foarte atenta la detalii, iar rezultatul final a fost peste asteptarile noastre.",
+  },
+  {
+    name: "Mihai Ionescu",
+    text: "Profesionalism, rabdare si un montaj video exceptional. Recomand Studio66 cu toata increderea.",
+  },
 ];
 
 export default function Testimonials() {
@@ -74,6 +82,7 @@ export default function Testimonials() {
             }}
           >
             <div
+              className="testimonial-stars"
               style={{
                 color: "#C9A55A",
                 fontSize: "42px",
