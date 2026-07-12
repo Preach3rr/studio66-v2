@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
@@ -144,76 +144,53 @@ export default function Navbar() {
         </button>
       </motion.div>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            <motion.button
-              type="button"
-              aria-label="Close menu overlay"
-              onClick={() => setMenuOpen(false)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
-              className="fixed inset-x-0 bottom-0 top-[94px] z-[55] bg-[#050505]/86 backdrop-blur-sm lg:hidden"
-            />
+      {menuOpen && (
+        <>
+          <button
+            type="button"
+            aria-label="Close menu overlay"
+            onClick={() => setMenuOpen(false)}
+            className="fixed inset-x-0 bottom-0 top-[94px] z-[120] bg-[#050505]/86 backdrop-blur-sm lg:hidden"
+          />
 
-            <motion.nav
-              id="mobile-navigation"
-              initial={{ opacity: 0, y: -16, scaleY: 0.96 }}
-              animate={{ opacity: 1, y: 0, scaleY: 1 }}
-              exit={{ opacity: 0, y: -10, scaleY: 0.98 }}
-              transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-x-0 bottom-0 top-[94px] z-[60] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl origin-top lg:hidden"
-            >
-              <div className="mx-auto flex max-w-[1850px] flex-col gap-2 pb-24">
-                {links.map((link, index) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.26, delay: 0.05 + index * 0.04 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="rounded-lg border border-transparent bg-white/[0.03] px-4 py-3 text-sm font-medium tracking-wide text-white hover:border-[#C9A55A]/30 hover:bg-white/5 hover:text-[#E8CB8B]"
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                ))}
+          <nav
+            id="mobile-navigation"
+            className="fixed inset-x-0 bottom-0 top-[94px] z-[130] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl lg:hidden"
+          >
+            <div className="mx-auto flex max-w-[1850px] flex-col gap-2 pb-24">
+              {links.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-lg border border-transparent bg-white/[0.03] px-4 py-3 text-sm font-medium tracking-wide text-white hover:border-[#C9A55A]/30 hover:bg-white/5 hover:text-[#E8CB8B]"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+            <div className="pointer-events-none fixed inset-x-0 bottom-5 z-[131] px-5 lg:hidden">
+              <div className="pointer-events-auto mx-auto grid max-w-[1850px] grid-cols-2 gap-3 rounded-2xl border border-[#C9A55A]/20 bg-[#070707]/95 p-3 shadow-[0_12px_28px_rgba(0,0,0,.45)] backdrop-blur-md">
+                <Link
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-xl border border-[#C9A55A]/40 bg-[#C9A55A]/15 px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#F2DEAA]"
+                >
+                  Book Now
+                </Link>
+                <Link
+                  href="#portfolio"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-xl border border-white/15 bg-white/[0.03] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-white"
+                >
+                  Portfolio
+                </Link>
               </div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 26 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 22 }}
-                transition={{ duration: 0.34, delay: 0.1 }}
-                className="pointer-events-none fixed inset-x-0 bottom-5 px-5 lg:hidden"
-              >
-                <div className="pointer-events-auto mx-auto grid max-w-[1850px] grid-cols-2 gap-3 rounded-2xl border border-[#C9A55A]/20 bg-[#070707]/95 p-3 shadow-[0_12px_28px_rgba(0,0,0,.45)] backdrop-blur-md">
-                  <Link
-                    href="#contact"
-                    onClick={() => setMenuOpen(false)}
-                    className="rounded-xl border border-[#C9A55A]/40 bg-[#C9A55A]/15 px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#F2DEAA]"
-                  >
-                    Book Now
-                  </Link>
-                  <Link
-                    href="#portfolio"
-                    onClick={() => setMenuOpen(false)}
-                    className="rounded-xl border border-white/15 bg-white/[0.03] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-white"
-                  >
-                    Portfolio
-                  </Link>
-                </div>
-              </motion.div>
-            </motion.nav>
-          </>
-        )}
-      </AnimatePresence>
+            </div>
+          </nav>
+        </>
+      )}
     </motion.header>
   );
 }
