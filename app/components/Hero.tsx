@@ -1,12 +1,51 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import HeroBackground from "./HeroBackground";
 
 export default function Hero() {
+  const [showIntroLogo, setShowIntroLogo] = useState(true);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setShowIntroLogo(false);
+    }, 1400);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <section className="hero-section relative h-screen overflow-hidden">
+
+      <AnimatePresence>
+        {showIntroLogo && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="fixed inset-0 z-[180] flex items-center justify-center bg-black"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.03 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Image
+                src="/logo/studio66.png"
+                alt="Studio66"
+                width={260}
+                height={190}
+                priority
+                className="h-auto w-[180px] sm:w-[220px]"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Background */}
 
@@ -60,23 +99,6 @@ export default function Hero() {
       {/* Content */}
 
       <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="md:hidden"
-          style={{ marginBottom: "20px" }}
-        >
-          <Image
-            src="/logo/studio66.png"
-            alt="Studio66 emblem"
-            width={210}
-            height={154}
-            priority
-            className="h-auto w-[140px] sm:w-[170px] md:w-[190px]"
-          />
-        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 25 }}

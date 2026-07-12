@@ -1656,3 +1656,20 @@ animation:pulseGlow 4s ease-in-out infinite;
     margin-bottom:0 !important;
   }
 }
+
+/* Final hotfix: keep hero dots below CTA buttons on mobile */
+@media (max-width: 767px){
+  .hero-section .relative.z-20{
+    padding-bottom:146px !important;
+  }
+
+  .hero-actions{
+    position:relative;
+    z-index:32 !important;
+  }
+
+  .hero-slider-dots{
+    bottom:16px !important;
+    z-index:24 !important;
+  }
+}
