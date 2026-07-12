@@ -65,6 +65,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
+          className="md:hidden"
           style={{ marginBottom: "20px" }}
         >
           <Image
