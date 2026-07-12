@@ -1476,6 +1476,17 @@ animation:pulseGlow 4s ease-in-out infinite;
   .featured-card{
     height:400px !important;
   }
+
+  .hero-section{
+    min-height:560px !important;
+  }
+
+  .hero-section .relative.z-20{
+    justify-content:center !important;
+    padding-top:96px !important;
+    padding-bottom:86px !important;
+    transform:translateY(28px);
+  }
 }
 
 /* Final mobile fixes requested */
