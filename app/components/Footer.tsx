@@ -4,6 +4,13 @@ const navigation = [
   ["Home", "#top"], ["Services", "#services"], ["Portfolio", "#portfolio"], ["Pricing", "#pricing"], ["Contact", "#contact"],
 ];
 
+const seoLinks = [
+  ["Fotograf Nunta Bucuresti", "/fotograf-nunta-bucuresti/"],
+  ["Videograf Nunta Bucuresti", "/videograf-nunta-bucuresti/"],
+  ["Fotograf Botez Bucuresti", "/fotograf-botez-bucuresti/"],
+  ["Sedinta Foto Cuplu Bucuresti", "/sedinta-foto-cuplu-bucuresti/"],
+];
+
 export default function Footer() {
   return (
     <footer className="footer-section" style={{ background: "#050505", padding: "120px 8% 50px", borderTop: "1px solid rgba(201,165,90,.15)" }}>
@@ -29,6 +36,16 @@ export default function Footer() {
         </div>
       </div>
       <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,#C9A55A,transparent)", marginBottom: "30px" }} />
+
+      <div style={{ marginBottom: "30px" }}>
+        <p style={{ color: "#C9A55A", letterSpacing: ".22em", marginBottom: "14px", fontWeight: 600 }}>POPULAR SEARCHES</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
+          {seoLinks.map(([label, href]) => (
+            <a key={label} href={href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>{label}</a>
+          ))}
+        </div>
+      </div>
+
       <p style={{ color: "#777", textAlign: "center" }}>© 2026 Studio66 Photography. All Rights Reserved.</p>
     </footer>
   );
