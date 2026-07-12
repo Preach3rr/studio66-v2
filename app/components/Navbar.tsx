@@ -155,16 +155,16 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
-              className="fixed inset-x-0 bottom-0 top-[94px] bg-[#050505]/86 backdrop-blur-sm lg:hidden"
+              className="fixed inset-x-0 bottom-0 top-[94px] z-[55] bg-[#050505]/86 backdrop-blur-sm lg:hidden"
             />
 
             <motion.nav
               id="mobile-navigation"
-              initial={{ opacity: 0, y: -20, clipPath: "inset(0 0 100% 0)" }}
-              animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
-              exit={{ opacity: 0, y: -14, clipPath: "inset(0 0 100% 0)" }}
-              transition={{ duration: 0.46, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-x-0 bottom-0 top-[94px] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl origin-top lg:hidden"
+              initial={{ opacity: 0, y: -16, scaleY: 0.96 }}
+              animate={{ opacity: 1, y: 0, scaleY: 1 }}
+              exit={{ opacity: 0, y: -10, scaleY: 0.98 }}
+              transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-x-0 bottom-0 top-[94px] z-[60] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl origin-top lg:hidden"
             >
               <div className="mx-auto flex max-w-[1850px] flex-col gap-2 pb-24">
                 {links.map((link, index) => (
