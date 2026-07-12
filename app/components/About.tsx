@@ -106,20 +106,21 @@ export default function About() {
         {isExpanded && (
           <motion.div
             id="about-description"
+            className="about-expanded"
             initial={{ height: 0, opacity: 0, y: -20 }}
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -20 }}
             transition={{ duration: 0.55, ease: "easeInOut" }}
             style={{ overflow: "hidden" }}
           >
-            <div style={{ borderTop: "1px solid rgba(201,165,90,.2)", marginTop: "75px", paddingTop: "75px" }}>
-              <div style={{ maxWidth: "840px", margin: "0 auto", textAlign: "center" }}>
+            <div className="about-expanded-shell" style={{ borderTop: "1px solid rgba(201,165,90,.2)", marginTop: "75px", paddingTop: "75px" }}>
+              <div className="about-expanded-copy" style={{ maxWidth: "840px", margin: "0 auto", textAlign: "center" }}>
                 <p style={{ color: "#C9A55A", letterSpacing: ".42em", fontWeight: 600, marginBottom: "18px" }}>THE STUDIO66 APPROACH</p>
                 <h2 style={{ color: "#fff", fontSize: "clamp(36px,4vw,58px)", lineHeight: 1.08, fontWeight: 800, marginBottom: "28px" }}>Your story, honestly told.</h2>
                 <p style={{ color: "#bdbdbd", fontSize: "18px", lineHeight: 1.9 }}>Studio66 creates photography and cinematic films for people who want to remember more than how an event looked. We preserve its atmosphere: the anticipation before a wedding ceremony, the hands that hold a newborn, the energy of a room and the small details that pass too quickly.</p>
                 <p style={{ color: "#bdbdbd", fontSize: "18px", lineHeight: 1.9, marginTop: "22px" }}>Based between Denmark and Romania, we bring a calm, personal process to weddings, baptisms, portraits, events and commercial projects. The result is a gallery and film that still feels true years from now.</p>
               </div>
-              <div className="mobile-stack-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "28px", maxWidth: "1180px", margin: "70px auto 0" }}>
+              <div className="mobile-stack-grid about-expanded-values" style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "28px", maxWidth: "1180px", margin: "70px auto 0" }}>
                 {values.map((value, index) => {
                   const Icon = value.icon;
                   return <motion.div key={value.title} className="mobile-card" initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + index * 0.1 }} style={{ padding: "36px", border: "1px solid rgba(201,165,90,.2)", borderRadius: "18px", background: "#111" }}>

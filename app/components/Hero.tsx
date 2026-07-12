@@ -104,35 +104,6 @@ export default function Hero() {
           }}
         />
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: .5 }}
-          className="hero-details"
-          style={{
-            marginTop: "38px",
-            color: "#ECECEC",
-            fontSize: "18px",
-          }}
-        >
-          Weddings
-          <span style={{ color: "#C9A55A", margin: "0 16px" }}>•</span>
-
-          Baptisms
-          <span style={{ color: "#C9A55A", margin: "0 16px" }}>•</span>
-
-          Events
-          <span style={{ color: "#C9A55A", margin: "0 16px" }}>•</span>
-
-          Portraits
-          <span style={{ color: "#C9A55A", margin: "0 16px" }}>•</span>
-
-          Real Estate
-          <span style={{ color: "#C9A55A", margin: "0 16px" }}>•</span>
-
-          Commercial
-        </motion.p>
-
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,7 +112,7 @@ export default function Hero() {
           style={{
             display: "flex",
             gap: "30px",
-            marginTop: "60px",
+            marginTop: "46px",
             flexWrap: "wrap",
             justifyContent: "center",
           }}

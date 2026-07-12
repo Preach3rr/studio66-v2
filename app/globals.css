@@ -1314,6 +1314,35 @@ animation:pulseGlow 4s ease-in-out infinite;
   }
 }
 
+@media (max-width: 767px){
+  .about-expanded{
+    overflow:visible !important;
+  }
+
+  .about-expanded-shell{
+    margin-top:34px !important;
+    padding-top:34px !important;
+  }
+
+  .about-expanded-copy{
+    max-width:100% !important;
+    text-align:left !important;
+    padding-inline:2px;
+  }
+
+  .about-expanded-copy p{
+    font-size:15px !important;
+    line-height:1.65 !important;
+  }
+
+  .about-expanded-values{
+    margin-top:28px !important;
+    max-width:100% !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:10px !important;
+  }
+}
+
 /* Final hero smoothness and width tuning */
 .hero-bg-slide--previous{
   opacity:1;
