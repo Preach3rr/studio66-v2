@@ -23,6 +23,10 @@ const reviews = [
     name: "Mihai Ionescu",
     text: "Profesionalism, rabdare si un montaj video exceptional. Recomand Studio66 cu toata increderea.",
   },
+  {
+    name: "Raluca Dumitrescu",
+    text: "Ne-am simtit in largul nostru pe tot parcursul sedintei, iar fotografiile au iesit superbe si foarte naturale.",
+  },
 ];
 
 export default function Testimonials() {

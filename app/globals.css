@@ -1481,13 +1481,14 @@ animation:pulseGlow 4s ease-in-out infinite;
 /* Final mobile fixes requested */
 @media (max-width: 767px){
   .hero-slider-dots{
-    bottom:6px !important;
-    z-index:8 !important;
+    bottom:10px !important;
+    z-index:32 !important;
   }
 
   .hero-actions{
     position:relative;
     z-index:20;
+    margin-bottom:54px !important;
   }
 
   .services-grid{
