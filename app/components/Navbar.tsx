@@ -160,13 +160,13 @@ export default function Navbar() {
 
             <motion.nav
               id="mobile-navigation"
-              initial={{ opacity: 0, y: -26 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -18 }}
-              transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-x-0 bottom-0 top-[94px] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl lg:hidden"
+              initial={{ opacity: 0, y: -20, clipPath: "inset(0 0 100% 0)" }}
+              animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
+              exit={{ opacity: 0, y: -14, clipPath: "inset(0 0 100% 0)" }}
+              transition={{ duration: 0.46, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-x-0 bottom-0 top-[94px] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl origin-top lg:hidden"
             >
-              <div className="mx-auto flex max-w-[1850px] flex-col gap-2">
+              <div className="mx-auto flex max-w-[1850px] flex-col gap-2 pb-24">
                 {links.map((link, index) => (
                   <motion.div
                     key={link.name}
@@ -185,6 +185,31 @@ export default function Navbar() {
                   </motion.div>
                 ))}
               </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 26 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 22 }}
+                transition={{ duration: 0.34, delay: 0.1 }}
+                className="pointer-events-none fixed inset-x-0 bottom-5 px-5 lg:hidden"
+              >
+                <div className="pointer-events-auto mx-auto grid max-w-[1850px] grid-cols-2 gap-3 rounded-2xl border border-[#C9A55A]/20 bg-[#070707]/95 p-3 shadow-[0_12px_28px_rgba(0,0,0,.45)] backdrop-blur-md">
+                  <Link
+                    href="#contact"
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-xl border border-[#C9A55A]/40 bg-[#C9A55A]/15 px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#F2DEAA]"
+                  >
+                    Book Now
+                  </Link>
+                  <Link
+                    href="#portfolio"
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-xl border border-white/15 bg-white/[0.03] px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-white"
+                  >
+                    Portfolio
+                  </Link>
+                </div>
+              </motion.div>
             </motion.nav>
           </>
         )}

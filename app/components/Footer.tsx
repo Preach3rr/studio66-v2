@@ -32,17 +32,17 @@ export default function Footer() {
       </div>
       <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,#C9A55A,transparent)", marginBottom: "30px" }} />
 
-      <details style={{ marginBottom: "30px", border: "1px solid rgba(201,165,90,.2)", borderRadius: "14px", background: "rgba(255,255,255,.015)" }}>
-        <summary style={{ color: "#C9A55A", letterSpacing: ".18em", fontWeight: 600, padding: "14px 16px", cursor: "pointer", userSelect: "none" }}>
-          SEO SEARCHES (CLICK TO EXPAND)
+      <details style={{ marginBottom: "24px", border: "1px solid rgba(201,165,90,.12)", borderRadius: "12px", background: "rgba(255,255,255,.008)" }}>
+        <summary style={{ color: "#9F8654", letterSpacing: ".12em", fontWeight: 500, fontSize: "12px", padding: "10px 14px", cursor: "pointer", userSelect: "none", textTransform: "uppercase", opacity: 0.85 }}>
+          Related Searches
         </summary>
 
-        <div style={{ padding: "0 16px 16px" }}>
-          <div style={{ marginBottom: "20px" }}>
-            <p style={{ color: "#C9A55A", letterSpacing: ".16em", marginBottom: "10px", fontWeight: 600, fontSize: "13px" }}>POPULAR SEARCHES</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
+        <div style={{ padding: "0 14px 14px" }}>
+          <div style={{ marginBottom: "14px" }}>
+            <p style={{ color: "#9F8654", letterSpacing: ".12em", marginBottom: "8px", fontWeight: 500, fontSize: "11px", textTransform: "uppercase", opacity: 0.75 }}>Popular Searches</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 10px" }}>
               {featuredSeoLinks.map((item) => (
-                <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
+                <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left", fontSize: "12px", color: "#8C8C8C", opacity: 0.85 }}>
                   {item.label}
                 </a>
               ))}
@@ -50,10 +50,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <p style={{ color: "#C9A55A", letterSpacing: ".16em", marginBottom: "10px", fontWeight: 600, fontSize: "13px" }}>VENUE SEARCHES</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
+            <p style={{ color: "#9F8654", letterSpacing: ".12em", marginBottom: "8px", fontWeight: 500, fontSize: "11px", textTransform: "uppercase", opacity: 0.75 }}>Venue Searches</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px 10px" }}>
               {featuredVenueLinks.map((item) => (
-                <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
+                <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left", fontSize: "12px", color: "#8C8C8C", opacity: 0.85 }}>
                   {item.label}
                 </a>
               ))}
