@@ -14,6 +14,7 @@ type Props = {
   ctaText: string;
   ctaHref: string;
   faqs: FaqItem[];
+  faqTitle?: string;
   children?: ReactNode;
 };
 
@@ -26,6 +27,7 @@ export default function SeoServicePage({
   ctaText,
   ctaHref,
   faqs,
+  faqTitle = "Intrebari frecvente",
   children,
 }: Props) {
   const faqSchema = {
@@ -65,7 +67,7 @@ export default function SeoServicePage({
       {children}
 
       <section style={{ maxWidth: "980px", margin: "72px auto 0" }}>
-        <h2 style={{ fontSize: "clamp(30px, 4vw, 44px)", marginBottom: "24px" }}>Intrebari frecvente</h2>
+        <h2 style={{ fontSize: "clamp(30px, 4vw, 44px)", marginBottom: "24px" }}>{faqTitle}</h2>
         <div style={{ display: "grid", gap: "14px" }}>
           {faqs.map((faq) => (
             <article key={faq.question} style={{ border: "1px solid rgba(201,165,90,.2)", borderRadius: "14px", padding: "18px", background: "#101010" }}>

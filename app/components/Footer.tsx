@@ -1,14 +1,8 @@
 import Image from "next/image";
+import { featuredSeoLinks } from "./seoLandingData";
 
 const navigation = [
   ["Home", "#top"], ["Services", "#services"], ["Portfolio", "#portfolio"], ["Pricing", "#pricing"], ["Contact", "#contact"],
-];
-
-const seoLinks = [
-  ["Fotograf Nunta Bucuresti", "/fotograf-nunta-bucuresti/"],
-  ["Videograf Nunta Bucuresti", "/videograf-nunta-bucuresti/"],
-  ["Fotograf Botez Bucuresti", "/fotograf-botez-bucuresti/"],
-  ["Sedinta Foto Cuplu Bucuresti", "/sedinta-foto-cuplu-bucuresti/"],
 ];
 
 export default function Footer() {
@@ -40,8 +34,10 @@ export default function Footer() {
       <div style={{ marginBottom: "30px" }}>
         <p style={{ color: "#C9A55A", letterSpacing: ".22em", marginBottom: "14px", fontWeight: 600 }}>POPULAR SEARCHES</p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
-          {seoLinks.map(([label, href]) => (
-            <a key={label} href={href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>{label}</a>
+          {featuredSeoLinks.map((item) => (
+            <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
+              {item.label}
+            </a>
           ))}
         </div>
       </div>
