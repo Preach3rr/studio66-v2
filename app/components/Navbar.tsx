@@ -46,12 +46,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -70, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.9 }}
-      className="site-navbar fixed inset-x-0 top-0 z-50"
-    >
+    <header className="site-navbar fixed inset-x-0 top-0 z-50">
       <motion.div
         animate={{
           backgroundColor: scrolled
@@ -191,6 +186,6 @@ export default function Navbar() {
           </nav>
         </>
       )}
-    </motion.header>
+    </header>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import HeroBackground from "./HeroBackground";
 
 export default function Hero() {
@@ -59,6 +60,22 @@ export default function Hero() {
       {/* Content */}
 
       <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          style={{ marginBottom: "20px" }}
+        >
+          <Image
+            src="/logo/studio66.png"
+            alt="Studio66 emblem"
+            width={210}
+            height={154}
+            priority
+            className="h-auto w-[140px] sm:w-[170px] md:w-[190px]"
+          />
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 25 }}
