@@ -1,0 +1,21 @@
+{
+  "name": "Studio66 Photography",
+  "short_name": "Studio66",
+  "description": "Premium photography and cinematic videography services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090909",
+  "theme_color": "#090909",
+  "icons": [
+    {
+      "src": "/logo/studio66.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo/studio66.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

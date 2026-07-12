@@ -12,7 +12,7 @@ import Packages from "./components/Packages";
 
 export default function Home() {
   return (
-    <main id="top">
+    <main id="top" className="premium-main">
       <Navbar />
       <Hero />
       <Services />

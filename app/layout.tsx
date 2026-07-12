@@ -23,6 +23,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/logo/studio66.png", sizes: "32x32", type: "image/png" },
+      { url: "/logo/studio66.png", sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: ["/logo/studio66.png"],
+    apple: [{ url: "/logo/studio66.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     url: "https://studio66photography.ro/",
@@ -92,7 +101,7 @@ export default function RootLayout({
       className="scroll-smooth"
     >
       <body
-        className="bg-[#090909] text-white antialiased"
+        className="premium-bg bg-[#090909] text-white antialiased"
       >
         <script
           type="application/ld+json"
