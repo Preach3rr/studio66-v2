@@ -65,8 +65,12 @@ body{
   mask-image:radial-gradient(circle at top, rgba(0,0,0,.6), transparent 78%);
 }
 
-.premium-main > *{
+.premium-main > *:not(.site-navbar){
   animation:premiumReveal .72s cubic-bezier(.22,1,.36,1) both;
+}
+
+.premium-main > .site-navbar{
+  animation:none !important;
 }
 
 .premium-main > *:nth-child(2){ animation-delay:.06s; }
@@ -547,7 +551,7 @@ animation:pulseGlow 4s ease-in-out infinite;
     opacity:.12;
   }
 
-  .premium-main > *{
+  .premium-main > *:not(.site-navbar){
     animation-duration:.62s;
   }
 
