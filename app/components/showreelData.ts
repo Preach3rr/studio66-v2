@@ -22,7 +22,7 @@ export const showreelClips: ShowreelClip[] = [
     subtitle: "",
     description: "",
     src: "/videos-web/1.mp4",
-    poster: "/thumbnails/1.jpg",
+    poster: "/thumbnails/2.jpg",
   },
   {
     id: "2",
@@ -30,7 +30,7 @@ export const showreelClips: ShowreelClip[] = [
     subtitle: "",
     description: "",
     src: "/videos-web/2.mp4",
-    poster: "/thumbnails/2.jpg",
+    poster: "/thumbnails/1.jpg",
   },
   {
     id: "3",
