@@ -32,27 +32,35 @@ export default function Footer() {
       </div>
       <div style={{ height: "1px", background: "linear-gradient(90deg,transparent,#C9A55A,transparent)", marginBottom: "30px" }} />
 
-      <div style={{ marginBottom: "30px" }}>
-        <p style={{ color: "#C9A55A", letterSpacing: ".22em", marginBottom: "14px", fontWeight: 600 }}>POPULAR SEARCHES</p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
-          {featuredSeoLinks.map((item) => (
-            <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </div>
+      <details style={{ marginBottom: "30px", border: "1px solid rgba(201,165,90,.2)", borderRadius: "14px", background: "rgba(255,255,255,.015)" }}>
+        <summary style={{ color: "#C9A55A", letterSpacing: ".18em", fontWeight: 600, padding: "14px 16px", cursor: "pointer", userSelect: "none" }}>
+          SEO SEARCHES (CLICK TO EXPAND)
+        </summary>
 
-      <div style={{ marginBottom: "30px" }}>
-        <p style={{ color: "#C9A55A", letterSpacing: ".22em", marginBottom: "14px", fontWeight: 600 }}>VENUE SEARCHES</p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
-          {featuredVenueLinks.map((item) => (
-            <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
-              {item.label}
-            </a>
-          ))}
+        <div style={{ padding: "0 16px 16px" }}>
+          <div style={{ marginBottom: "20px" }}>
+            <p style={{ color: "#C9A55A", letterSpacing: ".16em", marginBottom: "10px", fontWeight: 600, fontSize: "13px" }}>POPULAR SEARCHES</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
+              {featuredSeoLinks.map((item) => (
+                <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p style={{ color: "#C9A55A", letterSpacing: ".16em", marginBottom: "10px", fontWeight: 600, fontSize: "13px" }}>VENUE SEARCHES</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 14px" }}>
+              {featuredVenueLinks.map((item) => (
+                <a key={item.href} href={item.href} className="footer-link" style={{ width: "auto", marginBottom: 0, textAlign: "left" }}>
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </details>
 
       <p style={{ color: "#777", textAlign: "center" }}>© 2026 Studio66 Photography. All Rights Reserved.</p>
     </footer>

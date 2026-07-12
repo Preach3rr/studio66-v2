@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import type { MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -18,6 +19,12 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,7 +97,7 @@ export default function Navbar() {
         }}
         className="relative mx-auto flex max-w-[1850px] items-center justify-between px-5 md:px-10 xl:px-20"
       >
-        <Link href="/" className="flex items-center">
+        <Link href="/" onClick={handleLogoClick} className="flex items-center">
           <motion.div
             animate={{
               scale: scrolled ? 0.88 : 1,
@@ -137,34 +144,51 @@ export default function Navbar() {
         </button>
       </motion.div>
 
-      {menuOpen && (
-        <>
-          <button
-            type="button"
-            aria-label="Close menu overlay"
-            onClick={() => setMenuOpen(false)}
-            className="fixed inset-x-0 bottom-0 top-[94px] bg-[#050505]/86 backdrop-blur-sm lg:hidden"
-          />
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close menu overlay"
+              onClick={() => setMenuOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              className="fixed inset-x-0 bottom-0 top-[94px] bg-[#050505]/86 backdrop-blur-sm lg:hidden"
+            />
 
-          <nav
-            id="mobile-navigation"
-            className="fixed inset-x-0 bottom-0 top-[94px] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl lg:hidden"
-          >
-            <div className="mx-auto flex max-w-[1850px] flex-col gap-2">
-              {links.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-lg border border-transparent bg-white/[0.03] px-4 py-3 text-sm font-medium tracking-wide text-white hover:border-[#C9A55A]/30 hover:bg-white/5 hover:text-[#E8CB8B]"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </nav>
-        </>
-      )}
+            <motion.nav
+              id="mobile-navigation"
+              initial={{ opacity: 0, y: -26 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-x-0 bottom-0 top-[94px] overflow-y-auto border-t border-[#C9A55A]/20 bg-[#090909]/96 px-5 py-6 backdrop-blur-xl lg:hidden"
+            >
+              <div className="mx-auto flex max-w-[1850px] flex-col gap-2">
+                {links.map((link, index) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.26, delay: 0.05 + index * 0.04 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="rounded-lg border border-transparent bg-white/[0.03] px-4 py-3 text-sm font-medium tracking-wide text-white hover:border-[#C9A55A]/30 hover:bg-white/5 hover:text-[#E8CB8B]"
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.nav>
+          </>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
