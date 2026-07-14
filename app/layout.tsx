@@ -121,13 +121,13 @@ export default function RootLayout({
       <body
         className="premium-bg bg-[#090909] text-white antialiased"
       >
-        {/* Google Analytics */}
+        {/* Google Analytics & Ads */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-LWM5CK9V8K"
           strategy="afterInteractive"
         />
         <Script
-          id="google-analytics"
+          id="google-analytics-config"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
@@ -135,22 +135,6 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-LWM5CK9V8K');
-            `,
-          }}
-        />
-        {/* Google Ads Conversion Tracking */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18323023566"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-ads"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
               gtag('config', 'AW-18323023566');
             `,
           }}
