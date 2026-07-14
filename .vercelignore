@@ -3,3 +3,10 @@ ffmpeg/
 .next/
 node_modules/
 .env.local
+public/videos/
+public/videos-web/
+public/portfolio/
+*.mp4
+*.mov
+*.avi
+*.webm
