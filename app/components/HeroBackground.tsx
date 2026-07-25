@@ -6,6 +6,10 @@ import { studio66BlurDataURL } from "./imagePlaceholders";
 
 const images = [
   "/images/hero/hero1.jpg",
+  "/images/hero/hero10.jpg",
+  "/images/hero/hero11.jpg",
+  "/images/hero/hero12.jpg",
+  "/images/hero/hero13.jpg",
   "/images/hero/hero2.JPG",
   "/images/hero/hero3.jpg",
   "/images/hero/hero4.jpg",
@@ -14,10 +18,6 @@ const images = [
   "/images/hero/hero7.jpg",
   "/images/hero/hero8.jpg",
   "/images/hero/hero9.jpg",
-  "/images/hero/hero10.jpg",
-  "/images/hero/hero11.jpg",
-  "/images/hero/hero12.jpg",
-  "/images/hero/hero13.jpg",
 ];
 
 export default function HeroBackground() {
