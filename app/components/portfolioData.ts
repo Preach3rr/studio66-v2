@@ -1,6 +1,6 @@
 export const portfolio = {
   weddings: { count: 24, directory: "Weddings" },
-  christenings: { count: 9, directory: "Christenings" },
+  christenings: { count: 15, directory: "Christenings" },
   events: { count: 8, directory: "Events" },
   portraits: { count: 4, directory: "Portraits" },
   "real-estate": { count: 0, directory: "Real-Estate" },
@@ -17,7 +17,7 @@ export type PortfolioImage = {
 export const portfolioImages: PortfolioImage[] = Object.entries(portfolio).flatMap(
   ([category, { count, directory }]) =>
     Array.from({ length: count }, (_, index) => ({
-      src: `/portfolio/${directory}/${index + 1}.jpg`,
+      src: `/portfolio-web/${directory}/${index + 1}.webp`,
       category: category as PortfolioCategory,
     })),
 );
