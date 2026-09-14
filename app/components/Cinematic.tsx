@@ -14,7 +14,7 @@ export default function Cinematic() {
       }}
     >
       <Image
-        src="/images/hero.jpg"
+        src="/images/hero-web/hero1.webp"
         alt="Studio66"
         fill
         sizes="100vw"

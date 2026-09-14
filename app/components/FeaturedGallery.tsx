@@ -6,17 +6,17 @@ import { studio66BlurDataURL } from "./imagePlaceholders";
 
 const photos = [
   {
-    image: "/portfolio/Weddings/1.jpg",
+    image: "/portfolio-web/Weddings/1.webp",
     title: "Wedding Stories",
     subtitle: "Luxury Wedding Photography",
   },
   {
-    image: "/portfolio/Portraits/1.jpg",
+    image: "/portfolio-web/Portraits/1.webp",
     title: "Portrait Sessions",
     subtitle: "Natural & Editorial Portraits",
   },
   {
-    image: "/portfolio/Events/1.jpg",
+    image: "/portfolio-web/Events/1.webp",
     title: "Events",
     subtitle: "Capturing Every Emotion",
   },
