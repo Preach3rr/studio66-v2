@@ -5,19 +5,20 @@ import { useEffect, useState } from "react";
 import { studio66BlurDataURL } from "./imagePlaceholders";
 
 const images = [
-  "/images/hero/hero1.jpg",
-  "/images/hero/hero10.jpg",
-  "/images/hero/hero11.jpg",
-  "/images/hero/hero12.jpg",
-  "/images/hero/hero13.jpg",
-  "/images/hero/hero2.JPG",
-  "/images/hero/hero3.jpg",
-  "/images/hero/hero4.jpg",
-  "/images/hero/hero5.jpg",
-  "/images/hero/hero6.jpg",
-  "/images/hero/hero7.jpg",
-  "/images/hero/hero8.jpg",
-  "/images/hero/hero9.jpg",
+  "/images/hero-web/hero1.webp",
+  "/images/hero-web/hero2.webp",
+  "/images/hero-web/hero3.webp",
+  "/images/hero-web/hero4.webp",
+  "/images/hero-web/hero5.webp",
+  "/images/hero-web/hero6.webp",
+  "/images/hero-web/hero7.webp",
+  "/images/hero-web/hero8.webp",
+  "/images/hero-web/hero9.webp",
+  "/images/hero-web/hero10.webp",
+  "/images/hero-web/hero11.webp",
+  "/images/hero-web/hero12.webp",
+  "/images/hero-web/hero13.webp",
+  "/images/hero-web/hero14.webp",
 ];
 
 export default function HeroBackground() {
@@ -153,7 +154,6 @@ export default function HeroBackground() {
               src={images[previous]}
               alt=""
               fill
-              priority={previous === 0}
               placeholder="blur"
               blurDataURL={studio66BlurDataURL}
               decoding="async"
@@ -173,7 +173,7 @@ export default function HeroBackground() {
             src={images[current]}
             alt=""
             fill
-            priority={current === 0}
+            preload={current === 0}
             placeholder="blur"
             blurDataURL={studio66BlurDataURL}
             decoding="async"
