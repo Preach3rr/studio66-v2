@@ -17,20 +17,20 @@ export const showreelClips: ShowreelClip[] = [
     poster: "/thumbnails/0.jpg",
   },
   {
-    id: "2",
-    title: "2",
-    subtitle: "",
-    description: "",
-    src: "/videos-web/2.mp4",
-    poster: "/thumbnails/2.jpg",
-  },
-  {
     id: "1",
     title: "1",
     subtitle: "",
     description: "",
     src: "/videos-web/1.mp4",
     poster: "/thumbnails/1.jpg",
+  },
+  {
+    id: "2",
+    title: "2",
+    subtitle: "",
+    description: "",
+    src: "/videos-web/2.mp4",
+    poster: "/thumbnails/2.jpg",
   },
   {
     id: "3",
@@ -55,5 +55,13 @@ export const showreelClips: ShowreelClip[] = [
     description: "",
     src: "/videos-web/5.mp4",
     poster: "/thumbnails/5.jpg",
+  },
+  {
+    id: "6",
+    title: "6",
+    subtitle: "",
+    description: "",
+    src: "/videos-web/6.mp4",
+    poster: "/thumbnails/6.jpg",
   },
 ];

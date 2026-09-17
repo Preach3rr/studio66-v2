@@ -3,7 +3,7 @@ const { readdirSync, existsSync, mkdirSync, writeFileSync } = require("fs");
 const { join, basename, extname } = require("path");
 
 const root = join(__dirname, "..");
-const videosDir = join(root, "public", "videos");
+const videosDir = join(root, "assets", "source-videos");
 const thumbsDir = join(root, "public", "thumbnails");
 const dataFile = join(root, "app", "components", "showreelData.ts");
 const ffmpegPath = join("C:", "ffmpeg", "bin", "ffmpeg.exe");

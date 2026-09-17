@@ -2,10 +2,13 @@ ffmpeg/
 .git/
 .next/
 node_modules/
+.vercel/
+out/
 .env.local
 public/videos/
 public/videos-web/
-public/portfolio/
+assets/source-images/
+assets/source-videos/
 *.mp4
 *.mov
 *.avi

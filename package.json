@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:thumbnails": "node scripts/generate-thumbnails.js"
+    "generate:thumbnails": "node scripts/generate-thumbnails.js",
+    "optimize:gallery": "node scripts/optimize-gallery-images.js"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
