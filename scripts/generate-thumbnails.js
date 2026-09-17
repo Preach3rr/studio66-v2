@@ -3,13 +3,13 @@ const { readdirSync, existsSync, mkdirSync, writeFileSync } = require("fs");
 const { join, basename, extname } = require("path");
 
 const root = join(__dirname, "..");
-const videosDir = join(root, "assets", "source-videos");
+const videosDir = join(root, "public", "videos-web");
 const thumbsDir = join(root, "public", "thumbnails");
 const dataFile = join(root, "app", "components", "showreelData.ts");
 const ffmpegPath = join("C:", "ffmpeg", "bin", "ffmpeg.exe");
 
 if (!existsSync(videosDir)) {
-  throw new Error(`Videos directory not found: ${videosDir}`);
+  throw new Error(`Showreel videos directory not found: ${videosDir}`);
 }
 
 if (!existsSync(ffmpegPath)) {
@@ -23,7 +23,7 @@ if (!existsSync(thumbsDir)) {
 const videoFiles = readdirSync(videosDir)
   .filter((file) => {
     const ext = extname(file).toLowerCase();
-    return ext === ".mp4" || ext === ".mov";
+    return ext === ".mp4";
   })
   .sort((a, b) => {
     const aId = parseInt(basename(a, extname(a)), 10);
@@ -35,7 +35,7 @@ const videoFiles = readdirSync(videosDir)
   });
 
 if (videoFiles.length === 0) {
-  throw new Error("No MP4 or MOV files found in public/videos.");
+  throw new Error("No MP4 files found in public/videos-web.");
 }
 
 const clips = videoFiles.map((file) => {
@@ -63,7 +63,7 @@ const clips = videoFiles.map((file) => {
     title: id.replace(/[-_]/g, " "),
     subtitle: "",
     description: "",
-    src: `/videos/${file}`,
+    src: `/videos-web/${file}`,
     poster: `/thumbnails/${thumbFile}`,
   };
 });
