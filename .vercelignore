@@ -6,7 +6,6 @@ node_modules/
 out/
 .env.local
 public/videos/
-public/videos-web/
 assets/source-images/
 assets/source-videos/
 *.mp4
